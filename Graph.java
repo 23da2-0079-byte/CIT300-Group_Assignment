@@ -170,3 +170,44 @@ public class Graph {
         }
         System.out.println();
     }
+	   // Depth-First Search traversal
+
+    public void dfsTraversal(String startLocation) {
+        int startIndex = findIndex(startLocation);
+        if (startIndex == -1) {
+            System.out.println("Starting location not found.");
+            return;
+        }
+        boolean[] visited = new boolean[locationCount];
+        System.out.println("---- DFS Traversal starting from " + startLocation + " ----");
+        dfsHelper(startIndex, visited);
+        System.out.println();
+    }
+
+    private void dfsHelper(int index, boolean[] visited) {
+        visited[index] = true;
+        System.out.print(locations[index] + "   ");
+        for (int j = 0; j < locationCount; j++) {
+            if (adjMatrix[index][j] && !visited[j]) {
+                dfsHelper(j, visited);
+            }
+        }
+    }
+
+    public int getLocationCount() {
+        return locationCount;
+    }
+
+    // Count unique connections 
+    public int getConnectionCount() {
+        int total = 0;
+        for (int i = 0; i < locationCount; i++) {
+            for (int j = i + 1; j < locationCount; j++) {
+                if (adjMatrix[i][j]) {
+                    total++;
+                }
+            }
+        }
+        return total;
+    }
+}
