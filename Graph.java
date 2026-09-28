@@ -64,3 +64,53 @@ public class Graph {
         locationCount--;
         return true;
     }
+	
+    // Add a connection
+        int i = findIndex(from);
+        int j = findIndex(to);
+        if (i == -1 || j == -1) {
+            return false;
+        }
+        adjMatrix[i][j] = true;
+        adjMatrix[j][i] = true;
+        return true;
+    }
+
+    // Remove a connection 
+    public boolean removeConnection(String from, String to) {
+        int i = findIndex(from);
+        int j = findIndex(to);
+        if (i == -1 || j == -1) {
+            return false;
+        }
+        adjMatrix[i][j] = false;
+        adjMatrix[j][i] = false;
+        return true;
+    }
+
+    public boolean locationExists(String name) {
+        return findIndex(name) != -1;
+    }
+
+    // Print all location 
+    public void displayConnections() {
+        if (locationCount == 0) {
+            System.out.println("No campus locations added yet.");
+            return;
+        }
+        System.out.println("---- Campus Locations and Connections ----");
+        for (int i = 0; i < locationCount; i++) {
+            System.out.print(locations[i] + " -> ");
+            boolean hasConnection = false;
+            for (int j = 0; j < locationCount; j++) {
+                if (adjMatrix[i][j]) {
+                    System.out.print(locations[j] + "   ");
+                    hasConnection = true;
+                }
+            }
+            if (!hasConnection) {
+                System.out.print("(no connections)");
+            }
+            System.out.println();
+        }
+    }
