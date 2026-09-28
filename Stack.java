@@ -59,6 +59,15 @@ public class Stack {
         return top + 1;
     }
 
+    // Return last actions.
+    public String[] getLastActions(int count) {
+        int actualCount = Math.min(count, getCount());
+        String[] result = new String[actualCount];
+        for (int i = 0; i < actualCount; i++) {
+            result[i] = actions[top - i];
+        }
+        return result;
+    }
 }
 
 
