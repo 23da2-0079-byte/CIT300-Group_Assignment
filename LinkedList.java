@@ -1,6 +1,6 @@
 public class LinkedList {
 
-    // Node class
+    // ------------------ Node class
     class Node {
         Student student;
         Node next;
@@ -19,7 +19,7 @@ public class LinkedList {
         size = 0;
     }
 
-    // Add a new student 
+    // ------------------ Add a new student 
     public boolean addStudent(Student newStudent) {
         if (findStudent(newStudent.studentId) != null) {
             return false;
@@ -40,4 +40,31 @@ public class LinkedList {
         size++;
         return true;
     }
+
+
+    // ------------------ Search student
+     public Student findStudent(String studentId) {
+        Node current = head;
+        while (current != null) {
+            if (current.student.studentId.equalsIgnoreCase(studentId)) {
+                return current.student;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    // ------------------ Update student details
+    public boolean updateStudent(String studentId, String name, String programme, double marks) {
+        Student s = findStudent(studentId);
+        if (s == null) {
+            return false;
+        }
+        s.name = name;
+        s.programme = programme;
+        s.marks = marks;
+        return true;
+    }
+
+
 }
