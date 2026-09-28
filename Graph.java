@@ -114,3 +114,59 @@ public class Graph {
             System.out.println();
         }
     }
+	
+    // Print a simple ASCII drawing 
+
+    public void printAsciiMap() {
+        System.out.println("---- Campus Map (ASCII) ----");
+        System.out.println("                [Library]");
+        System.out.println("                    |");
+        System.out.println("   [Research Bldg]--[Main Building]");
+        System.out.println("        |    \\            |");
+        System.out.println("        |     \\------[Offices]");
+        System.out.println("        |               |");
+        System.out.println("      [Hubs]-------------+");
+        System.out.println("        |");
+        System.out.println("      [Gym]");
+        System.out.println();
+    }
+
+    // Breadth-First Search traversal
+
+    public void bfsTraversal(String startLocation) {
+        int startIndex = findIndex(startLocation);
+        if (startIndex == -1) {
+            System.out.println("Starting location not found.");
+            return;
+        }
+
+        boolean[] visited = new boolean[locationCount];
+        String[] queue = new String[locationCount];
+        int front = 0;
+        int rear = -1;
+        int count = 0;
+
+        rear++;
+        queue[rear] = locations[startIndex];
+        count++;
+        visited[startIndex] = true;
+
+        System.out.println("---- BFS Traversal starting from " + startLocation + " ----");
+        while (count > 0) {
+            String current = queue[front];
+            front++;
+            count--;
+            System.out.print(current + "   ");
+
+            int currentIndex = findIndex(current);
+            for (int j = 0; j < locationCount; j++) {
+                if (adjMatrix[currentIndex][j] && !visited[j]) {
+                    visited[j] = true;
+                    rear++;
+                    queue[rear] = locations[j];
+                    count++;
+                }
+            }
+        }
+        System.out.println();
+    }
