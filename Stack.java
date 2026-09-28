@@ -30,3 +30,35 @@ public class Stack {
             actions[top] = action;
         }
     }
+       // Remove recent action.
+    public String pop() {
+        if (isEmpty()) {
+            return null;
+        }
+        String action = actions[top];
+        actions[top] = null;
+        top--;
+        return action;
+    }
+
+    // Show all action 
+    public void displayAll() {
+        if (isEmpty()) {
+            System.out.println("No recent actions recorded.");
+            return;
+        }
+        System.out.println("---- Recent Actions (Stack) ----");
+        int count = 1;
+        for (int i = top; i >= 0; i--) {
+            System.out.println(count + ". " + actions[i]);
+            count++;
+        }
+    }
+
+    public int getCount() {
+        return top + 1;
+    }
+
+}
+
+
