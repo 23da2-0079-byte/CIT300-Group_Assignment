@@ -66,5 +66,42 @@ public class LinkedList {
         return true;
     }
 
+    // ------------------ Remove student
+    public Student deleteStudent(String studentId) {
+        Node current = head;
+        Node previous = null;
 
+        while (current != null) {
+            if (current.student.studentId.equalsIgnoreCase(studentId)) {
+                if (previous == null) {
+                    head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+                size--;
+                return current.student;
+            }
+            previous = current;
+            current = current.next;
+        }
+        return null;
+    }
+
+    // ------------------ Print 
+    public void displayAll() {
+        if (head == null) {
+            System.out.println("No student records found.");
+            return;
+        }
+        System.out.println("---- All Student Records (Linked List) ----");
+        Node current = head;
+        while (current != null) {
+            current.student.display();
+            current = current.next;
+        }
+    }
+
+    public int getSize() {
+        return size;
+    }
 }
