@@ -10,10 +10,19 @@ public class InputValidator {
         return marks >= 0 && marks <= 100;
     }
 
-     // --------------- convert text to number
+     // --------------- convert text to  whole number
     public static int parseInteger(String input) {
         try {
             return Integer.parseInt(input.trim());
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+     // --------------- convert text to decimal 
+    public static double parseDouble(String input) {
+        try {
+            return Double.parseDouble(input.trim());
         } catch (Exception e) {
             return -1;
         }
