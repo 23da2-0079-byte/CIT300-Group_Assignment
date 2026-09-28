@@ -32,3 +32,18 @@ public class Queue {
         count++;
         return true;
     }
+      // Remove request 
+    public String dequeue() {
+        if (isEmpty()) {
+            return null;
+        }
+        String request = requests[front];
+        front = (front + 1) % capacity;
+        count--;
+        return request;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
