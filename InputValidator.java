@@ -10,4 +10,13 @@ public class InputValidator {
         return marks >= 0 && marks <= 100;
     }
 
+     // --------------- convert text to number
+    public static int parseInteger(String input) {
+        try {
+            return Integer.parseInt(input.trim());
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
 }
