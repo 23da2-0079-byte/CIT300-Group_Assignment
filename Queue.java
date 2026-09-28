@@ -46,4 +46,17 @@ public class Queue {
     public int getCount() {
         return count;
     }
+    // Show pending request
+    public void displayAll() {
+        if (isEmpty()) {
+            System.out.println("No pending service requests.");
+            return;
+        }
+        System.out.println("---- Pending Service Requests (Queue) ----");
+        int index = front;
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + requests[index]);
+            index = (index + 1) % capacity;
+        }
+    }
 }
