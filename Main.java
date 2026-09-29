@@ -71,31 +71,43 @@ public class Main {
         campusGraph.addConnection("Main Building", "Library");
     }
 
-       // ----------------  Dashboard ----------------
-
-    private static void printDashboard() {
-        System.out.println("==========================================================");
-        System.out.println("           SLTC STUDENT RECORD SYSTEM");
-        System.out.println("==========================================================");
-        System.out.println("                                                           ");
-        System.out.println(" STUDENT CARD        QUEUE CARD         LOCATIONS CARD");
-        System.out.println(" Total: " + studentList.getSize() +
-                "              Pending: " + serviceQueue.getCount() +
-                "           Total: " + campusGraph.getLocationCount());
-        System.out.println("                                        Connections: " + campusGraph.getConnectionCount());
-        System.out.println();
-        System.out.println(" RECENT ACTIONS");
+// ----------------  Dashboard ----------------
+private static void printDashboard() {
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                       SLTC STUDENT RECORD SYSTEM                         ║");
+        System.out.println("║                              Group No: 21                                ║");
+        System.out.println("╠══════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("║                                                                          ║");
+        System.out.println("║  ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐ ║");
+        System.out.println("║  │   STUDENT CARD     │   │    QUEUE CARD      │   │   LOCATIONS CARD   │ ║");
+        System.out.println("║  ├────────────────────┤   ├────────────────────┤   ├────────────────────┤ ║");
+        System.out.println("║  │ Total Students     │   │ Pending Queue      │   │ Total Locations    │ ║");
+        System.out.printf( "║  │ %-18s │   │ %-18s │   │ %-18s │ ║%n",
+                studentList.getSize(),
+                serviceQueue.getCount(),
+                campusGraph.getLocationCount());
+        System.out.println("║  │                    │   │                    │   │                    │ ║");
+        System.out.printf( "║  │                    │   │                    │   │ Connections: %-5s │ ║%n",
+                campusGraph.getConnectionCount());
+        System.out.println("║  └────────────────────┘   └────────────────────┘   └────────────────────┘ ║");
+        System.out.println("║                                                                          ║");
+        System.out.println("╠══════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("║  RECENT ACTIONS                                                          ║");
+        System.out.println("╟──────────────────────────────────────────────────────────────────────────╢");
         String[] lastActions = recentActions.getLastActions(3);
         if (lastActions.length == 0) {
-            System.out.println(" No actions recorded yet.");
+            System.out.println("║  No actions recorded yet.                                                ║");
         } else {
             for (int i = 0; i < lastActions.length; i++) {
-                System.out.println(" " + (i + 1) + ". " + lastActions[i]);
+                String line = "  " + (i + 1) + ". " + lastActions[i];
+                System.out.printf("║ %-72s ║%n", line);
             }
         }
-        System.out.println("==========================================================");
+        System.out.println("╚══════════════════════════════════════════════════════════════════════════╝");
     }
 
+    
+ // ----------------  Menu ----------------
     private static void printMenu() {
         System.out.println("1.  Add Student Record");
         System.out.println("2.  Update Student Record");

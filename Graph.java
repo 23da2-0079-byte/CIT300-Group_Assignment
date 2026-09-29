@@ -21,28 +21,28 @@ public class Graph {
         return -1;
     }
 
-    // Add new location 
+    // Add new location
     public boolean addLocation(String name) {
         if (locationCount >= maxLocations) {
             System.out.println("Cannot add more locations, the campus map is full.");
             return false;
         }
         if (findIndex(name) != -1) {
-            return false; 
+            return false;
         }
         locations[locationCount] = name;
         locationCount++;
         return true;
     }
-	
-    // Remove location 
+
+    // Remove location
     public boolean removeLocation(String name) {
         int index = findIndex(name);
         if (index == -1) {
             return false;
         }
 
-        // Shift locations 
+        // Shift locations
         for (int i = index; i < locationCount - 1; i++) {
             locations[i] = locations[i + 1];
         }
@@ -64,7 +64,7 @@ public class Graph {
         locationCount--;
         return true;
     }
-	
+
     // Add a connection
     public boolean addConnection(String from, String to) {
         int i = findIndex(from);
@@ -77,7 +77,7 @@ public class Graph {
         return true;
     }
 
-    // Remove a connection 
+    // Remove a connection
     public boolean removeConnection(String from, String to) {
         int i = findIndex(from);
         int j = findIndex(to);
@@ -93,7 +93,7 @@ public class Graph {
         return findIndex(name) != -1;
     }
 
-    // Print all location 
+    // Print all location
     public void displayConnections() {
         if (locationCount == 0) {
             System.out.println("No campus locations added yet.");
@@ -115,23 +115,45 @@ public class Graph {
             System.out.println();
         }
     }
-	
-    // Print a simple ASCII drawing 
 
-    public void printAsciiMap() {
-        System.out.println("---- Campus Map (ASCII) ----");
-        System.out.println("                [Library]");
-        System.out.println("                    |");
-        System.out.println("   [Research Bldg]--[Main Building]");
-        System.out.println("        |    \\            |");
-        System.out.println("        |     \\------[Offices]");
-        System.out.println("        |               |");
-        System.out.println("      [Hubs]-------------+");
-        System.out.println("        |");
-        System.out.println("      [Gym]");
-        System.out.println();
-    }
-
+    // Print a simple ASCII drawing
+public void printAsciiMap() {
+    System.out.println("╔══════════════════════════════════════════════════════════╗");
+    System.out.println("║                 CAMPUS ROUTE GRAPH                       ║");
+    System.out.println("║                    Group No: 21                          ║");
+    System.out.println("╠══════════════════════════════════════════════════════════╣");
+    System.out.println("║                                                          ║");
+    System.out.println("║                     ┌───────────────┐                    ║");
+    System.out.println("║                     │   Research    │                    ║");
+    System.out.println("║      ┌──────────────┤   Building    ├──────────────┐     ║");
+    System.out.println("║      │              └───────┬───────┘              │     ║");
+    System.out.println("║      │                      │                      │     ║");
+    System.out.println("║      │                      │                      │     ║");
+    System.out.println("║  ┌───┴───────┐      ┌───────┴───────┐              │     ║");
+    System.out.println("║  │           │      │               │              │     ║");
+    System.out.println("║  │   Hubs    ├──────┤    Offices    │              │     ║");
+    System.out.println("║  │           │      │               │              │     ║");
+    System.out.println("║  └──┬───┬────┘      └───────┬───────┘              │     ║");
+    System.out.println("║     │   │                   │                      │     ║");
+    System.out.println("║     │   │                   │                      │     ║");
+    System.out.println("║     │   │            ┌──────┴────────┐             │     ║");
+    System.out.println("║     │   │            │               │             │     ║");
+    System.out.println("║     │   └────────────┤ Main Building ├─────────────┘     ║");
+    System.out.println("║     │                │               │                   ║");
+    System.out.println("║     │                └───────┬───────┘                   ║");
+    System.out.println("║     │                        │                           ║");
+    System.out.println("║     │                        │                           ║");
+    System.out.println("║     │               ┌────────┴──────┐                    ║");
+    System.out.println("║     │               │    Library    │                    ║");
+    System.out.println("║     │               └───────────────┘                    ║");
+    System.out.println("║     │                                                    ║");
+    System.out.println("║     │                                                    ║");
+    System.out.println("║     │               ┌───────────────┐                    ║");
+    System.out.println("║     └───────────────┤      Gym      │                    ║");
+    System.out.println("║                     └───────────────┘                    ║");
+    System.out.println("║                                                          ║");
+    System.out.println("╚══════════════════════════════════════════════════════════╝");
+}
     // Breadth-First Search traversal
 
     public void bfsTraversal(String startLocation) {
@@ -171,7 +193,7 @@ public class Graph {
         }
         System.out.println();
     }
-	   // Depth-First Search traversal
+    // Depth-First Search traversal
 
     public void dfsTraversal(String startLocation) {
         int startIndex = findIndex(startLocation);
@@ -199,7 +221,7 @@ public class Graph {
         return locationCount;
     }
 
-    // Count unique connections 
+    // Count unique connections
     public int getConnectionCount() {
         int total = 0;
         for (int i = 0; i < locationCount; i++) {
@@ -212,5 +234,3 @@ public class Graph {
         return total;
     }
 }
-
-
