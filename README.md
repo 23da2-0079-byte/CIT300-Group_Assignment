@@ -1,4 +1,4 @@
-# SLTC Student Record and Campus Route Management System
+# Student Record and Campus Route Management System
 
 CIT300 - Data Structures and Algorithms
 Group Practical Assignment 
