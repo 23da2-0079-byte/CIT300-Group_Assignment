@@ -66,6 +66,7 @@ public class Graph {
     }
 	
     // Add a connection
+    public boolean addConnection(String from, String to) {
         int i = findIndex(from);
         int j = findIndex(to);
         if (i == -1 || j == -1) {
@@ -211,3 +212,5 @@ public class Graph {
         return total;
     }
 }
+
+
