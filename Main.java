@@ -269,4 +269,92 @@ public class Main {
         }
     }
 
+       // ---------------- Graph Menu Options ----------------
+
+    private static void addCampusLocation() {
+        System.out.print("Enter new Campus Location name: ");
+        String name = scanner.nextLine();
+        if (!InputValidator.isNotEmpty(name)) {
+            System.out.println("Location name cannot be empty.");
+            return;
+        }
+
+        boolean added = campusGraph.addLocation(name);
+        if (added) {
+            recentActions.push("Added campus location " + name);
+            System.out.println("Location added successfully.");
+        } else {
+            System.out.println("That location already exists or the map is full.");
+        }
+    }
+
+    private static void removeCampusLocation() {
+        System.out.print("Enter Campus Location name to remove: ");
+        String name = scanner.nextLine();
+
+        boolean removed = campusGraph.removeLocation(name);
+        if (removed) {
+            recentActions.push("Removed campus location " + name);
+            System.out.println("Location removed successfully.");
+        } else {
+            System.out.println("Location not found: " + name);
+        }
+    }
+
+    private static void addCampusConnection() {
+        System.out.print("Enter first Location name: ");
+        String from = scanner.nextLine();
+        System.out.print("Enter second Location name: ");
+        String to = scanner.nextLine();
+
+        boolean added = campusGraph.addConnection(from, to);
+        if (added) {
+            recentActions.push("Added connection: " + from + " - " + to);
+            System.out.println("Connection added successfully.");
+        } else {
+            System.out.println("Could not add connection. Check that both locations exist.");
+        }
+    }
+
+    private static void removeCampusConnection() {
+        System.out.print("Enter first Location name: ");
+        String from = scanner.nextLine();
+        System.out.print("Enter second Location name: ");
+        String to = scanner.nextLine();
+
+        boolean removed = campusGraph.removeConnection(from, to);
+        if (removed) {
+            recentActions.push("Removed connection: " + from + " - " + to);
+            System.out.println("Connection removed successfully.");
+        } else {
+            System.out.println("That connection was not available.");
+        }
+    }
+
+    private static void traverseCampus() {
+        campusGraph.printAsciiMap();
+
+        System.out.print("Traverse using (1) BFS or (2) DFS? Enter 1 or 2: ");
+        String choiceInput = scanner.nextLine();
+        int choice = InputValidator.parseInteger(choiceInput);
+
+        System.out.print("Enter starting Location name: ");
+        String start = scanner.nextLine();
+
+        if (!campusGraph.locationExists(start)) {
+            System.out.println("Starting location not found: " + start);
+            return;
+        }
+
+        if (choice == 1) {
+            campusGraph.bfsTraversal(start);
+            recentActions.push("Ran BFS traversal from " + start);
+        } else if (choice == 2) {
+            campusGraph.dfsTraversal(start);
+            recentActions.push("Ran DFS traversal from " + start);
+        } else {
+            System.out.println("Invalid choice. Please enter 1 for BFS or 2 for DFS.");
+        }
+    }
+
 }
