@@ -218,5 +218,55 @@ public class Main {
         System.out.println("Student deleted successfully.");
     }
 
+       // ---------------- Queue Menu Option ----------------
+
+    private static void addServiceRequest() {
+        System.out.print("Enter Student ID for the request: ");
+        String id = scanner.nextLine();
+        if (!InputValidator.isNotEmpty(id)) {
+            System.out.println("Student ID cannot be empty.");
+            return;
+        }
+
+        System.out.print("Enter Request Description: ");
+        String description = scanner.nextLine();
+        if (!InputValidator.isNotEmpty(description)) {
+            System.out.println("Description cannot be empty.");
+            return;
+        }
+
+        String requestText = "Student " + id + " - " + description;
+        boolean success = serviceQueue.enqueue(requestText);
+
+        if (success) {
+            recentActions.push("Added service request for " + id);
+            System.out.println("Service request added.");
+        }
+    }
+
+    private static void processNextServiceRequest() {
+        String request = serviceQueue.dequeue();
+        if (request == null) {
+            System.out.println("No pending service requests.");
+            return;
+        }
+        System.out.println("Processing request: " + request);
+        recentActions.push("Processed request: " + request);
+    }
+
+    // ---------------- Hashing Menu Option ----------------
+
+    private static void searchStudentUsingHashing() {
+        System.out.print("Enter Student ID to search: ");
+        String id = scanner.nextLine();
+
+        Student found = studentHash.search(id);
+        if (found == null) {
+            System.out.println("No student found with ID " + id);
+        } else {
+            System.out.println("Student found:");
+            found.display();
+        }
+    }
 
 }
